@@ -9,11 +9,13 @@ import {
 import './css/index.css';
 import App from './App';
 import Index from './routes/Index';
+import Gallery from './routes/Gallery';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Index />} />
+      <Route path="/gallery" element={<Gallery />} />
     </Route>
   )
 );
