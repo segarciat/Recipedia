@@ -14,28 +14,28 @@ const recipes = [
 const Gallery = () => {
   const [query, setQuery] = useState('');
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target[0].value);
-    // Clear search input.
-    setQuery('');
-  };
+  let filteredRecipes = recipes.filter(
+    ({ title, description }) =>
+      title.toLowerCase().includes(query.toLowerCase()) ||
+      description.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <Container>
       <h1 className="mt-4">Recipe Gallery</h1>
-      <Search
-        query={query}
-        setQuery={setQuery}
-        handleSubmit={handleSearchSubmit}
-      />
+      <Search query={query} setQuery={setQuery} />
       <Container className="mt-4">
-        <Row xs={1} md={2} lg={3}>
-          {recipes.map((recipe, i) => (
-            <Col key={i} className="pb-3">
-              <ImageCard {...recipe} />
-            </Col>
-          ))}
-        </Row>
+        {filteredRecipes.length === 0 ? (
+          <p className="text-muted text-center">{`No results for "${query}"`}</p>
+        ) : (
+          <Row xs={1} md={2} lg={3}>
+            {filteredRecipes.map((recipe, i) => (
+              <Col key={i} className="pb-3">
+                <ImageCard {...recipe} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     </Container>
   );
