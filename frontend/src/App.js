@@ -1,16 +1,16 @@
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./components/Header";
-import Search from "./components/Search";
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Search from './components/Search';
 
 function App() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(e.target[0].value);
     // Clear search input.
-    setQuery("");
+    setQuery('');
   };
 
   return (
