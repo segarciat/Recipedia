@@ -21,7 +21,8 @@ const Gallery = () => {
     setQuery('');
   };
   return (
-    <div>
+    <Container>
+      <h1 className="mt-4">Recipe Gallery</h1>
       <Search
         query={query}
         setQuery={setQuery}
@@ -36,7 +37,7 @@ const Gallery = () => {
           ))}
         </Row>
       </Container>
-    </div>
+    </Container>
   );
 };
 
