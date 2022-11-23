@@ -9,6 +9,8 @@ function App() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(e.target[0].value);
+    // Clear search input.
+    setQuery("");
   };
 
   return (
