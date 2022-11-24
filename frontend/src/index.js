@@ -10,12 +10,14 @@ import './css/index.css';
 import App from './App';
 import Index from './routes/Index';
 import Gallery from './routes/Gallery';
+import Recipe from './routes/Recipe';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Index />} />
       <Route path="/gallery" element={<Gallery />} />
+      <Route path="/recipe" element={<Recipe />} />
     </Route>
   )
 );

@@ -9,14 +9,12 @@ const Index = () => {
       <Welcome />
       <Row xs={1} md={2} className="justify-content-center">
         <Col md={6} lg={2} className="d-flex justify-content-center">
-          <Link to="/gallery">
-            <Button variant="secondary" size="lg">
-              View Gallery
-            </Button>
-          </Link>
+          <Button as={Link} to="/gallery" variant="secondary" size="lg">
+            View Gallery
+          </Button>
         </Col>
         <Col md={6} lg={2} className="d-flex justify-content-center">
-          <Button variant="success" size="lg">
+          <Button as={Link} to="/recipe" variant="success" size="lg">
             Create Recipe
           </Button>
         </Col>
