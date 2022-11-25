@@ -1,9 +1,15 @@
-import { Row, Col, FloatingLabel, Form, Button } from 'react-bootstrap';
+import { Row, Col, FloatingLabel, Form } from 'react-bootstrap';
 
-const IngredientInput = ({ handleDelete }) => {
+const units = [
+  { value: 'grams', name: 'g' },
+  { value: 'ounces', name: 'oz' },
+  { value: 'cups', name: 'cups' },
+];
+
+const IngredientInput = () => {
   return (
     <Row>
-      <Col md={6}>
+      <Col md={10}>
         <FloatingLabel
           controlId="floatingInput"
           label="Ingredient"
@@ -12,7 +18,7 @@ const IngredientInput = ({ handleDelete }) => {
           <Form.Control type="text" placeholder="sugar" />
         </FloatingLabel>
       </Col>
-      <Col md={2}>
+      <Col md={4}>
         <FloatingLabel
           controlId="floatingInput"
           label="Amount"
@@ -21,18 +27,13 @@ const IngredientInput = ({ handleDelete }) => {
           <Form.Control type="text" placeholder="3" />
         </FloatingLabel>
       </Col>
-      <Col md={2}>
+      <Col md={4}>
         <Form.Select className="py-3" aria-label="Default select example">
           <option value="">Units</option>
-          <option value="grams">g</option>
-          <option value="ounces">oz</option>
-          <option value="cups">cups</option>
+          {units.map(({ value, name }, i) => (
+            <option value={value}>{name}</option>
+          ))}
         </Form.Select>
-      </Col>
-      <Col md={2}>
-        <Button className="py-3" variant="danger" onClick={handleDelete}>
-          Delete
-        </Button>
       </Col>
     </Row>
   );

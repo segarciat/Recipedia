@@ -1,30 +1,7 @@
-import { useState } from 'react';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-import IngredientInput from './IngredientInput';
-
-const defaultIngredient = {
-  ingredient: '',
-  amount: 0,
-  unit: '',
-};
+import { Form, Container, Row, Col } from 'react-bootstrap';
+import IngredientModal from './IngredientModal';
 
 const RecipeForm = () => {
-  // Ingredient has a name, an amount, and a unit for the amount
-  const [ingredients, setIngredients] = useState([]);
-
-  const handleAdd = () => {
-    setIngredients((oldIngredients) => [
-      ...oldIngredients,
-      { ...defaultIngredient },
-    ]);
-  };
-
-  const handleIngredientDelete = (index, evt) => {
-    setIngredients((oldIngredients) =>
-      oldIngredients.filter((ingredient, i) => index !== i)
-    );
-  };
-
   return (
     <Container className="border border-3">
       <Row className="justify-content-center">
@@ -72,16 +49,8 @@ const RecipeForm = () => {
               </Col>
             </Form.Group>
             <h3 className="my-4 text-center">Ingredients</h3>
-            {ingredients.map((ingredient, i) => (
-              <IngredientInput
-                key={i}
-                handleDelete={handleIngredientDelete.bind(this, i)}
-              />
-            ))}
             <Col className="d-flex justify-content-center my-3">
-              <Button variant="success" onClick={handleAdd}>
-                Add Ingredient
-              </Button>
+              <IngredientModal />
             </Col>
           </Form>
         </Col>
