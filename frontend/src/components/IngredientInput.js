@@ -31,7 +31,9 @@ const IngredientInput = () => {
         <Form.Select className="py-3" aria-label="Default select example">
           <option value="">Units</option>
           {units.map(({ value, name }, i) => (
-            <option value={value}>{name}</option>
+            <option key={i} value={value}>
+              {name}
+            </option>
           ))}
         </Form.Select>
       </Col>
