@@ -4,7 +4,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 const ModalFormWrap = ({ title, show, onCancel, onSubmit, children }) => {
   return (
     <>
-      <Modal show={show} onHide={onCancel}>
+      <Modal size="lg" show={show} onHide={onCancel}>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>

@@ -13,7 +13,7 @@ const RecipeForm = () => {
   const handleIngredientSave = (e) => {
     e.preventDefault();
     // Add new ingredient.
-    setIngredients((oldIngredients) => [...oldIngredients, current]);
+    setIngredients((oldIngredients) => [...oldIngredients, { ...current }]);
     // Reset new ingredient
     setCurrent({ ...defaultIngredient });
     setShowIngredientModal(false);
@@ -84,6 +84,13 @@ const RecipeForm = () => {
                 Add Ingredient
               </Button>
             </Col>
+            {ingredients.map((ingredient, index) => (
+              <IngredientInputGroup
+                key={index}
+                fields={ingredient}
+                isReadOnly
+              />
+            ))}
           </Form>
           <ModalFormWrap
             title={'New Ingredient'}

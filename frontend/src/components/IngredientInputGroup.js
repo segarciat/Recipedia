@@ -13,7 +13,7 @@ const INGREDIENT_AMOUNT_UNIT = 'ingredientAmountUnit';
 const IngredientInputGroup = ({ isReadOnly, fields, handleChange }) => {
   return (
     <Row>
-      <Col md={10}>
+      <Col md={8}>
         <FloatingLabel
           controlId="floatingInput"
           label="Ingredient"
@@ -31,7 +31,7 @@ const IngredientInputGroup = ({ isReadOnly, fields, handleChange }) => {
           />
         </FloatingLabel>
       </Col>
-      <Col md={4}>
+      <Col md={2}>
         <FloatingLabel
           controlId="floatingInput"
           label="Amount"
@@ -49,7 +49,7 @@ const IngredientInputGroup = ({ isReadOnly, fields, handleChange }) => {
           />
         </FloatingLabel>
       </Col>
-      <Col md={4}>
+      <Col md={2}>
         <Form.Select
           className="py-3"
           aria-label="Default select example"
