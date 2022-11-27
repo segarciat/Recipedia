@@ -1,24 +1,28 @@
 import { useState } from 'react';
-import { Form, Container, Row, Col } from 'react-bootstrap';
-import ModalInputWrap from './ModalInputWrap';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import ModalFormWrap from './ModalFormWrap';
 import IngredientInputGroup, {
   defaultIngredient,
 } from './IngredientInputGroup';
 
 const RecipeForm = () => {
   const [ingredients, setIngredients] = useState([]);
+  const [showIngredientModal, setShowIngredientModal] = useState(false);
   const [current, setCurrent] = useState({ ...defaultIngredient });
 
   const handleIngredientSave = (e) => {
+    e.preventDefault();
     // Add new ingredient.
     setIngredients((oldIngredients) => [...oldIngredients, current]);
     // Reset new ingredient
     setCurrent({ ...defaultIngredient });
+    setShowIngredientModal(false);
   };
 
   const handleIngredientCancel = (e) => {
     // Reset new ingredient.
     setCurrent({ ...defaultIngredient });
+    setShowIngredientModal(false);
   };
 
   const handleInputChange = (e) => {
@@ -73,18 +77,25 @@ const RecipeForm = () => {
             </Form.Group>
             <h3 className="my-4 text-center">Ingredients</h3>
             <Col className="d-flex justify-content-center my-3">
-              <ModalInputWrap
-                title={'New Ingredient'}
-                onCancel={handleIngredientCancel}
-                onSave={handleIngredientSave}
+              <Button
+                variant="primary"
+                onClick={(e) => setShowIngredientModal(true)}
               >
-                <IngredientInputGroup
-                  fields={current}
-                  handleChange={handleInputChange}
-                />
-              </ModalInputWrap>
+                Add Ingredient
+              </Button>
             </Col>
           </Form>
+          <ModalFormWrap
+            title={'New Ingredient'}
+            show={showIngredientModal}
+            onCancel={handleIngredientCancel}
+            onSubmit={handleIngredientSave}
+          >
+            <IngredientInputGroup
+              fields={current}
+              handleChange={handleInputChange}
+            />
+          </ModalFormWrap>
         </Col>
       </Row>
     </Container>
