@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import IngredientInput from './IngredientInput';
 
-const IngredientModal = () => {
+const ModalInputWrap = ({ title, onCancel, onSave, children }) => {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = (e) => {
+    onCancel(e);
+    setShow(false);
+  };
+
+  const handleSave = (e) => {
+    onSave(e);
+    setShow(false);
+  };
+
+  const handleShow = (e) => {
+    setShow(true);
+  };
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add Ingredient
+        Add
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New Ingredient</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-          <IngredientInput />
-        </Modal.Body>
+        <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save
           </Button>
         </Modal.Footer>
@@ -32,4 +40,4 @@ const IngredientModal = () => {
   );
 };
 
-export default IngredientModal;
+export default ModalInputWrap;

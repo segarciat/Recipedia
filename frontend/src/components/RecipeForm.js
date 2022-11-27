@@ -1,7 +1,30 @@
+import { useState } from 'react';
 import { Form, Container, Row, Col } from 'react-bootstrap';
-import IngredientModal from './IngredientModal';
+import ModalInputWrap from './ModalInputWrap';
+import IngredientInputGroup, {
+  defaultIngredient,
+} from './IngredientInputGroup';
 
 const RecipeForm = () => {
+  const [ingredients, setIngredients] = useState([]);
+  const [current, setCurrent] = useState({ ...defaultIngredient });
+
+  const handleIngredientSave = (e) => {
+    // Add new ingredient.
+    setIngredients((oldIngredients) => [...oldIngredients, current]);
+    // Reset new ingredient
+    setCurrent({ ...defaultIngredient });
+  };
+
+  const handleIngredientCancel = (e) => {
+    // Reset new ingredient.
+    setCurrent({ ...defaultIngredient });
+  };
+
+  const handleInputChange = (e) => {
+    setCurrent((state) => ({ ...state, [e.target.name]: e.target.value }));
+  };
+
   return (
     <Container className="border border-3">
       <Row className="justify-content-center">
@@ -50,7 +73,16 @@ const RecipeForm = () => {
             </Form.Group>
             <h3 className="my-4 text-center">Ingredients</h3>
             <Col className="d-flex justify-content-center my-3">
-              <IngredientModal />
+              <ModalInputWrap
+                title={'New Ingredient'}
+                onCancel={handleIngredientCancel}
+                onSave={handleIngredientSave}
+              >
+                <IngredientInputGroup
+                  fields={current}
+                  handleChange={handleInputChange}
+                />
+              </ModalInputWrap>
             </Col>
           </Form>
         </Col>
